@@ -85,3 +85,7 @@ La bibliotheque masque la sequence des deux bobines et les deux DRV8830. Le prog
 - Commencer a faible vitesse (par exemple 10 a 30 pas/s) et avec une charge mecanique legere.
 - `runSpeed()` est non bloquant, mais doit etre appele aussi souvent que possible dans `loop()`.
 - Cette version utilise le pas entier deux phases alimentees (4 etats).
+
+## Version 1.0.2
+
+Fixes speed-change scheduling for closed-loop/PID use. When the commanded speed increases after a very low non-zero speed, the next step deadline is now rescheduled so an old long interval cannot delay the motor response. Direction reversals are also rescheduled immediately.
